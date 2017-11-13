@@ -1,0 +1,32 @@
+[
+  {
+    "id": "deploy",
+    "execute-command": "/webhook/dockerhub/script/deploy.sh",
+    "command-working-directory": "/work/",
+    "response-message": "Executing docker-stack redeploy script",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "repository.name"
+      },
+      {
+        "source": "payload",
+        "name": "push_data.tag"
+      }
+    ],
+    "trigger-rule":
+    {
+      "match":
+      {
+        "type": "regex",
+        "value": "^[0-9.]+$",
+        "parameter":
+        {
+          "source": "payload",
+          "name": "push_data.tag"
+        }
+      }
+    }
+  }
+]
