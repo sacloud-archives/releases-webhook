@@ -17,14 +17,17 @@
     ],
     "trigger-rule":
     {
-      "match":
+      "not":
       {
-        "type": "regex",
-        "value": "^[0-9.]+$",
-        "parameter":
+        "match":
         {
-          "source": "payload",
-          "name": "push_data.tag"
+          "type": "value",
+          "value": "latest",
+          "parameter":
+          {
+            "source": "payload",
+            "name": "push_data.tag"
+          }
         }
       }
     }
